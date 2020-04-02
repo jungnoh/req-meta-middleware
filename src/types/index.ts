@@ -58,9 +58,10 @@ export interface IPResult {
 }
 
 export interface ParseResult {
-  url: url.UrlWithParsedQuery;
-  referrer: ReferrerResult;
-  utm: UTMResult;
   ip: IPResult | null;
+  referrer: ReferrerResult;
+  referrerUrl: url.UrlWithParsedQuery;
   ua: UAResult | null;
+  url: url.UrlWithParsedQuery;
+  utm: UTMResult;
 }

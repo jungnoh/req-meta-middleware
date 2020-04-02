@@ -8,16 +8,22 @@ let _options: RefParserOptions | null = null;
 
 function parseRequest(req: Request): ParseResult {
   const skipIP = _options?.skipIP ?? false;
-  const parsedUrl = url.parse(req.header('referrer') ?? '', true);
+  const parsedUrl = url.parse(`${req.protocol}://${req.get('host') ?? ''}${req.originalUrl}`, true);
+  const refUrl = url.parse(req.header('referrer') ?? '', true);
   const uaString = (req.header('user-agent') ?? '').trim();
 
-  const referrer = Parsers.Referrer.parse(parsedUrl, _options);
-  const utm = Parsers.UTM.parse(parsedUrl.query);
+  const referrer = Parsers.Referrer.parse(refUrl, _options);
+  const utm = Parsers.UTM.parse(refUrl.query);
   const ip = skipIP ? null : Parsers.IP.parse(req);
   const ua = (uaString === '') ? null : Parsers.UserAgent.parse(uaString);
 
   return {
-    ip, referrer, ua, utm, url: parsedUrl
+    ip,
+    referrer,
+    referrerUrl: refUrl,
+    ua,
+    url: parsedUrl,
+    utm
   };
 }
 
