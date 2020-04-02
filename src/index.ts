@@ -1,3 +1,4 @@
+import './types/express';
 import { RequestHandler, Request, Response, NextFunction } from 'express';
 import url from 'url';
 import { RefParserOptions, ParseResult } from './types';
