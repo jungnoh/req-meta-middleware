@@ -1,6 +1,6 @@
 {
   "name": "req-meta-middleware",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Express middleware for parsing request metadata (referrer, geo-ip, ..)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
