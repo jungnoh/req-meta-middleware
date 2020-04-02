@@ -17,7 +17,7 @@ yarn add req-meta-middleware
 ```
 
 ## Usage
-Add inbound-middleware to your middleware stack.
+Add req-meta-middleware to your middleware stack.
 Note that we need to `await` for the middleware to initialize.
 ```ts
 import meta from 'req-meta-middleware';
@@ -29,9 +29,7 @@ app.use(await meta());
 All parsed information is stored at `req.meta`.
 ```ts
 app.use((req: Request, res: Response, next: NextFunction) => {
-  if (req.inbound !== null) {
-    console.log(req.inbound.referrer);
-  }
+  console.log(req.meta.referrer);
  });
 ```
 
@@ -41,7 +39,7 @@ You can also specify options while initializing the middleware.
 const options = {
    // Domains of the server (default: [])
   internalDomains: ['foo.com'],
-  // When set to true, req IP will not be parsed and req.inbound.ip will be null. (default: false)
+  // When set to true, req IP will not be parsed and req.meta.ip will be null. (default: false)
   skipIP: false,
   // When set to true, the referrer database will be fetched from the web. (default: true)
   // Otherwise, local database stored in data/referers.json will be used.

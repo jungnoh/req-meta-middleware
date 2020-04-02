@@ -37,8 +37,11 @@
   },
   "keywords": [
     "express",
-    "request",
-    "referrer"
+    "middleware",
+    "referrer",
+    "geoip",
+    "useragent",
+    "utm"
   ],
   "author": "jungnoh <jungnoh.dev@gmail.com>"
 }
